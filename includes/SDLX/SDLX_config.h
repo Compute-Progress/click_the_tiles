@@ -13,11 +13,11 @@
 # define NAN_VAL 0
 
 /* Window settings */
-# define WIN_TITLE "DEFAULT"
-# define WIN_W (NAN_VAL)
-# define WIN_H (NAN_VAL)
-# define WIN_X (NAN_VAL)
-# define WIN_Y (NAN_VAL)
+# define WIN_TITLE "TILES"
+# define WIN_W (500)
+# define WIN_H (500)
+# define WIN_X (SDL_WINDOWPOS_CENTERED)
+# define WIN_Y (SDL_WINDOWPOS_CENTERED)
 
 # define SAVE_FILE_PATH NULL
 # define ASSETS_PATH NULL

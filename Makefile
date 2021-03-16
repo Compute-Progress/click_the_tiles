@@ -1,30 +1,32 @@
-NAME =
+NAME = tiles
 
-FLAGS = -Wall -Wextra -Werror
-INCLUDES = -I includes/ -I includes/includes_SDL2/
+FLAGS = -fsanitize=address
+INCLUDES = -I includes/ -I includes/SDL2/ -I includes/SDLX/
 
 LIB_DIR = libs/
-LIBRARIES = $(LIB_DIR)libSDL2.dylib $(LIB_DIR)libSDL2_ttf.dylib $(LIB_DIR)libSDL2_image.dylib
-STATIC_LIB = -L -l $(LIB_DIR)libSDLX.a $(LIB_DIR)libMT.a 
+LIBRARIES = $(LIB_DIR)libSDL2.dylib $(LIB_DIR)libSDL2_image.dylib $(LIB_DIR)libSDL2_ttf.dylib
+STATIC_LIB = -L -l $(LIB_DIR)libSDLX.a
 
-INPUT_DIR = input/
 SRCS_DIR = srcs/
 
 BIN_DIR = bin/
 
 SRCS_NAMES =			\
 	main 				\
+	game				\
+	buttons				\
 
 C_FILES =				\
-	$(SRCS_NAMES) 		\
+	$(addprefix $(SRCS_DIR), $(SRCS_NAMES))		\
 
 SRCS = $(addsuffix .c, $(C_FILES))
+
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:.c=.o))
 
 all: $(NAME)
 
 $(NAME): $(BIN_DIR) $(OBJS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(SRCS) $(LIBRARIES) -L -l $(STATIC_LIB)
+	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARIES) -L -l $(STATIC_LIB)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
@@ -37,7 +39,7 @@ run: re clean
 	./$(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(BIN_DIR)
 
 fclean: clean
 	rm -f $(NAME)
