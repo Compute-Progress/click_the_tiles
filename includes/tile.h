@@ -3,8 +3,7 @@
 
 #include "SDLX/SDLX.h"
 
-struct  Button;
-typedef struct Button Button;
+#define MAX_MOVES 25
 
 typedef struct Button
 {
@@ -14,34 +13,44 @@ typedef struct Button
     void (*OnClick)(Button *button, int correct);
     void (*OnHover)(Button *button);
 }               Button;
-// Might have texture / animated / invisible buttons at some point
-// but assume this is just a colored button
+
+typedef struct Mouse
+{
+    int         x;
+    int         y;
+    int         click;
+}               Mouse;
 
 typedef struct Context
 {
     int         turn;
-    int         x;
-    int         y;
+    int         lives;
     int         level;
-    int         click;
     int         mul;
     int         moves;
     int         nbuttons;
-    int         order[100];     
-    Button      buttons[100];
+    int         order[100];
+    Mouse       mouse;     
+    Button      buttons[25];
+    TTF_Font    *font;
     SDLX_Display*display;
 }               Context;
 
 
 Context *GetContext();
 void    CreateButtons();
+
 void PollButtons(int x, int y, int clicked);
 void PollInput(int turn, Context *ctx);
+
 void OnHover(Button *button);
 void OnClick(Button *button, int correct);
 void RenderButtons();
+
 void ComputerTurn(Context *ctx);
 void PlayerTurn(Context *ctx);
+void WinScreen(Context *ctx);
+void LoseScreen(Context *ctx);
 void AIClick(Button *button);
 
 #endif

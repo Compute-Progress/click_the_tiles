@@ -81,6 +81,11 @@ typedef struct SDL_Rect
 } SDL_Rect;
 
 
+typedef struct
+{
+    int x;
+}       This;
+
 /**
  *  \brief A rectangle, with the origin at the upper left (floating point).
  */

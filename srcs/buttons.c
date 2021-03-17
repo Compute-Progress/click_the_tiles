@@ -39,7 +39,6 @@ void CreateButtons()
             ctx->buttons[n + (i * ctx->mul)].OnClick = &OnClick;
             ctx->buttons[n + (i * ctx->mul)].OnHover = &OnHover;
             ctx->buttons[n + (i * ctx->mul)].id = n + (i * ctx->mul);
-            SDL_Log("Initialized %d", n + (i * ctx->mul));
             rect.x += rect.w;
             n++;
         }
