@@ -6,7 +6,7 @@ GameFunc funcs[4];
 
 void init()
 {
-    SDLX_Start();
+    SDLX_Start("Tiles", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIN_W, WIN_H, 0);
     funcs[0] = ComputerTurn;
     funcs[1] = PlayerTurn;
     funcs[2] = WinScreen;
@@ -15,6 +15,7 @@ void init()
     ctx.level   = 0;
     ctx.moves = 2;
     ctx.mul = 1;
+	TTF_Init();
     ctx.font = TTF_OpenFont("Assets/Pixel_Font.ttf", 14);
 }
 
@@ -34,7 +35,7 @@ int main(void)
     init();
     display = SDLX_DisplayGet();
     ctx.display = display;
-    
+
     CreateButtons();
     while(1)
     {
@@ -48,6 +49,8 @@ int main(void)
         funcs[ctx.turn](&ctx);
         if (ctx.turn == 0)
             SDL_Delay(250);
+		else
+			SDL_Delay(50);
         SDLX_FPSAdjust();
     }
 }

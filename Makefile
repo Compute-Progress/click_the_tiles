@@ -5,11 +5,19 @@ INCLUDES = -I includes/ -I includes/SDL2/ -I includes/SDLX/
 
 LIB_DIR = libs/
 LIBRARIES = $(LIB_DIR)libSDL2.dylib $(LIB_DIR)libSDL2_image.dylib $(LIB_DIR)libSDL2_ttf.dylib
-STATIC_LIB = -L -l $(LIB_DIR)libSDLX.a
+STATIC_LIB = $(LIB_DIR)libSDLX.a
 
+SDLX_DIR = SDLX/
 SRCS_DIR = srcs/
 
 BIN_DIR = bin/
+
+SDLX_NAME = 			\
+	SDLX_anim\
+	SDLX_init\
+	SDLX_input\
+	SDLX_render\
+	SDLX\
 
 SRCS_NAMES =			\
 	main 				\
@@ -17,7 +25,7 @@ SRCS_NAMES =			\
 	buttons				\
 
 C_FILES =				\
-	$(addprefix $(SRCS_DIR), $(SRCS_NAMES))		\
+	$(addprefix $(SRCS_DIR), $(SRCS_NAMES) $(addprefix $(SDLX_DIR), $(SDLX_NAME)))		\
 
 SRCS = $(addsuffix .c, $(C_FILES))
 
@@ -26,7 +34,7 @@ OBJS = $(addprefix $(BIN_DIR), $(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(BIN_DIR) $(OBJS)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARIES) -L -l $(STATIC_LIB)
+	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(OBJS) $(LIBRARIES)
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)

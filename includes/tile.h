@@ -10,8 +10,8 @@ typedef struct Button
     SDLX_Sprite sprite;
     int         color;
     int         id;
-    void (*OnClick)(Button *button, int correct);
-    void (*OnHover)(Button *button);
+    void (*OnClick)(struct Button *button, int correct);
+    void (*OnHover)(struct Button *button);
 }               Button;
 
 typedef struct Mouse
@@ -29,9 +29,9 @@ typedef struct Context
     int         mul;
     int         moves;
     int         nbuttons;
-    int         order[100];
-    Mouse       mouse;     
-    Button      buttons[25];
+    int         order[101];
+    Mouse       mouse;
+    Button      buttons[26];
     TTF_Font    *font;
     SDLX_Display*display;
 }               Context;

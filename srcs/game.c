@@ -40,7 +40,7 @@ void PlayerTurn(Context *ctx)
         if (ctx->moves++ == (ctx->mul * ctx->mul))
         {
             CreateButtons();
-            ctx->moves -= 1;
+            ctx->moves -= 2;
         }
         return ;
     }
@@ -55,7 +55,7 @@ void PlayerTurn(Context *ctx)
             ctx->turn = 3;
     }
 }
-   
+
 
 void ComputerTurn(Context *ctx)
 {
@@ -86,7 +86,7 @@ void WinScreen(Context *ctx)
     dst.y = 0;
     dst.w = WIN_W;
     dst.h = WIN_H;
-    SDLX_RenderMessage(ctx->font, "You have passed all 15 levels",NULL, &dst);
+    SDLX_RenderMessage(ctx->font, "You Win !",NULL, &dst);
     if (ctx->mouse.click)
         ctx->turn = 0;
 }

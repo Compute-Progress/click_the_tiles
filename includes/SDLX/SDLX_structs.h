@@ -2,6 +2,7 @@
 #define SDLX_structs_H
 
 # include "SDL2/SDL.h"
+# include "SDL2/SDL_ttf.h"
 
 
 typedef struct SDLX_Display
